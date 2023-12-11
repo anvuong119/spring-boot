@@ -37,6 +37,15 @@ public class Book {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Book)) {
+            return false;
+        }
+        Long otherId = ((Book) obj).getId();
+        return id == otherId;
+    }
+
     public Long getId() {
         return id;
     }
