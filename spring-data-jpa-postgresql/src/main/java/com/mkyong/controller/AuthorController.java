@@ -49,6 +49,13 @@ public class AuthorController {
         authorService.removeBook(id, bookId);
     }
 
+    // remove a car from an author
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}/remove/car/{carId}")
+    public void removeCarFromAuthor(@PathVariable Long id, @PathVariable Long carId) {
+        authorService.removeCar(id, carId);
+    }
+
     // delete an author
     @ResponseStatus(HttpStatus.NO_CONTENT) // 204
     @DeleteMapping("/{id}")

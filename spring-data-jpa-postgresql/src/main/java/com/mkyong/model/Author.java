@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class Author {
         inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private List<Book> books = new ArrayList<>();
+
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Car> cars = new ArrayList<>();
 
     // for JPA only, no use
     public Author() {
@@ -57,6 +61,19 @@ public class Author {
 
     public void removeBook(Book book) {
         books.remove(book);
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void addCar(Car car) {
+        car.setOwner(this);
+        cars.add(car);
+    }
+
+    public void removeCar(Car car) {
+        cars.remove(car);
     }
 
     public Long getId() {

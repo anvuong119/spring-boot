@@ -2,6 +2,7 @@ package com.mkyong.service;
 
 import com.mkyong.model.Author;
 import com.mkyong.model.Book;
+import com.mkyong.model.Car;
 import com.mkyong.repository.AuthorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class AuthorService {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private CarService carService;
 
     public List<Author> findAll() {
         return authorRepository.findAll();
@@ -43,6 +47,17 @@ public class AuthorService {
             Author author = authorOptional.get();
             Book book = bookOptional.get();
             author.removeBook(book);
+            authorRepository.save(author);
+        }
+    }
+
+    public void removeCar(Long authorId, Long carId) {
+        Optional<Author> authorOptional = findById(authorId);
+        Optional<Car> carOptional = carService.findById(carId);
+        if (authorOptional.isPresent() && carOptional.isPresent()) {
+            Author author = authorOptional.get();
+            Car car = carOptional.get();
+            author.removeCar(car);
             authorRepository.save(author);
         }
     }

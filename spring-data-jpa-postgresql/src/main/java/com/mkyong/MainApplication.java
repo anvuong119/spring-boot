@@ -2,6 +2,7 @@ package com.mkyong;
 
 import com.mkyong.model.Author;
 import com.mkyong.model.Book;
+import com.mkyong.model.Car;
 import com.mkyong.repository.AuthorRepository;
 import com.mkyong.repository.BookRepository;
 import org.slf4j.Logger;
@@ -59,6 +60,11 @@ public class MainApplication {
                     BigDecimal.valueOf(69.99),
                     LocalDate.of(2023, 8, 8));
 
+            Car c1 = new Car("Honda", "City", BigDecimal.valueOf(30000), LocalDate.of(2023, 1, 7));
+            Car c2 = new Car("Toyota", "Fortuner", BigDecimal.valueOf(40000), LocalDate.of(2023, 1, 7));
+            Car c3 = new Car("Ford", "Everest", BigDecimal.valueOf(60000), LocalDate.of(2023, 1, 7));
+            Car c4 = new Car("Mitsubishi", "Outlander", BigDecimal.valueOf(60000), LocalDate.of(2023, 1, 7));
+
             // bookRepository.saveAll(List.of(b1, b2, b3, b4));
 
             Author a1 = new Author("Author 1", LocalDate.of(1987, 1, 2));
@@ -75,6 +81,10 @@ public class MainApplication {
             a4.addBook(b6);
             a2.addBook(b5);
             a1.addBook(b6);
+            a1.addCar(c4);
+            a1.addCar(c3);
+            a3.addCar(c1);
+            a4.addCar(c2);
             authorRepository.saveAll(List.of(a1, a2, a3, a4));
         };
     }
