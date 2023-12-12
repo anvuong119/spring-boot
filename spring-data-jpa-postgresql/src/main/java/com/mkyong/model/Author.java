@@ -10,8 +10,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Author {
@@ -27,7 +27,7 @@ public class Author {
         joinColumns = @JoinColumn(name = "author_id"),
         inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 
     // for JPA only, no use
     public Author() {
@@ -47,7 +47,7 @@ public class Author {
                 '}';
     }
 
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
